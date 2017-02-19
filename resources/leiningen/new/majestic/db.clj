@@ -4,11 +4,31 @@
             [clojure.java.io :as io]
             [clojure.string :as s]
             [{{name}}.env :as env]
-            [{{name}}.utils :refer [now]])
+            [{{name}}.utils :refer [now flip]])
   (:import (java.text SimpleDateFormat)
            (java.util Date)))
 
-(defonce conn {:connection-uri env/database-url})
+(defn get-user-and-pass [str]
+  (let [val (-> str
+                (s/split #"//")
+                second
+                (s/split #"@")
+                first
+                (s/split #":"))]
+    [(first val) (second val)]))
+
+(defn fmt-jdbc [conn-str]
+  (if (and
+        conn-str
+        (= 3 (->> conn-str (re-seq #":") count)))
+    (let [[user password] (get-user-and-pass conn-str)
+          p-conn-str (-> conn-str
+                         (s/split #"@")
+                         second)]
+      (str "jdbc:postgresql://" p-conn-str "?user=" user "&password=" password))
+    (str "jdbc:" conn-str)))
+
+(defonce conn {:connection-uri (fmt-jdbc env/database-url)})
 
 (defn fmt-date [date]
   (when (instance? Date date)

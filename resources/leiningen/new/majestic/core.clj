@@ -10,6 +10,6 @@
 
 (utils/add-json-to-yesql)
 
-(defn -main [& args]
+(defn -main [& [port]]
   (start)
-  (println (str "Listening on " env/port)))
+  (println (str "Listening on " (or port env/port))))

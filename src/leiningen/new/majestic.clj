@@ -35,6 +35,7 @@
              ["src/{{sanitized}}/env.clj" (render "env.clj" data)]
              ["resources/migrations/{{hstore-mig}}" (render "hstore-mig.edn" data)]
              ["src/{{sanitized}}/http.clj" (render "http.clj" data)]
+             ["Procfile" (render "Procfile" data)]
              ["profiles.clj" (render "profiles.clj" data)]
              ["project.clj" (render "project.clj" data)]
              ["README.md" (render "README.md" data)]

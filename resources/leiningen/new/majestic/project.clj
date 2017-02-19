@@ -21,8 +21,9 @@
   :plugins [[lein-environ "1.0.3"]]
   :main {{name}}.core
   :source-paths ["src"]
+  :test-paths ["test"]
   :aliases {"migrate"          ["run" "-m" "{{name}}.db/migrate"]
             "rollback"         ["run" "-m" "{{name}}.db/rollback"]
             "create-migration" ["run" "-m" "{{name}}.db/create-migration"]}
-  :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all
+                       :uberjar-name "{{name}}.jar"}})

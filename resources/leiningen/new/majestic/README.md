@@ -17,7 +17,6 @@ lein repl
 
 ```clojure
 ; in the repl
-(in-ns '{{name}}.core)
 (start)
 ```
 
@@ -25,9 +24,12 @@ lein repl
 http :1337 # hello, world!
 ```
 
-## Prod
+## Prod (heroku)
 
 ```bash
-lein uberjar
-java -jar billing-service.jar
+git push heroku master
+heroku addons:create heroku-postgresql
+heroku config:add SECRET=a-secret-string
+heroku run lein migrate
+# good to go!
 ```
