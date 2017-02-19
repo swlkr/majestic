@@ -1,0 +1,8 @@
+{:up [
+      "create table users (
+        id uuid primary key,
+        email varchar(255) not null,
+        password varchar(255) not null,
+        created_at timestamp without time zone default (now() at time zone 'utc'),
+        CONSTRAINT unique_email UNIQUE(email));"]
+ :down ["DROP TABLE users;"]}

@@ -1,0 +1,2 @@
+{:up ["create extension hstore"]
+ :down ["drop extension hstore"]}
