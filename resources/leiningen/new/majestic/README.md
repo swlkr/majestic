@@ -27,9 +27,10 @@ http :1337 # hello, world!
 ## Prod (heroku)
 
 ```bash
+heroku create {{name}}
 git push heroku master
 heroku addons:create heroku-postgresql
-heroku config:add SECRET=a-secret-string
+heroku config:add SECRET=$(openssl rand -base64 32)
 heroku run lein migrate
 # good to go!
 ```
