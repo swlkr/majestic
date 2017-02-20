@@ -18,7 +18,6 @@
   (str (now) "_" (clojure.string/replace name #"\s+|-+|_+" "_") ".edn"))
 
 (defn majestic
-  "FIXME: write documentation"
   [name]
   (let [data {:name name
               :sanitized (name-to-path name)
